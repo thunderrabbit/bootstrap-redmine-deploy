@@ -52,7 +52,7 @@ echo "Getting playbooks to set up Redmine on AWS"
 git clone https://github.com/thunderrabbit/deploy-redmine-on-aws.git
 
 cd ~/deploy-redmine-on-aws
-ls
+. ./setup.sh
 EOL
 chmod 755 setup.sh
 
