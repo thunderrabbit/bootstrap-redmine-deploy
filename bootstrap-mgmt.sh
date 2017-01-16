@@ -33,5 +33,28 @@ ansible-galaxy install geerlingguy.mysql
 # create an RSA key in case we need it later
 su vagrant -c "ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''"
 
+cat >> /home/vagrant/.gitconfig <<EOL
+[core]
+       	excludesfile = /home/vagrant/.gitignore
+[user]
+       	name = bootstrap Redmine in VirtualBox
+       	email = bootstrap.redmine@example.com
+EOL
+
+## set up .gitignore
+curl https://www.gitignore.io/api/emacs%2Cansible > /home/vagrant/.gitignore
+
+## ~/setup.sh on the Vagrant box will pull in repos that know how to set up servers on AWS
+cat >> /home/vagrant/setup.sh <<EOL
+#!/bin/bash
+
+echo "Getting playbooks to set up Redmine on AWS"
+git clone https://github.com/thunderrabbit/deploy-redmine-on-aws.git
+
+cd ~/deploy-redmine-on-aws
+. ./setup.sh
+EOL
+chmod 755 setup.sh
+
 # make sure user vagrant can edit things in his own home directory
 chown -R vagrant:vagrant /home/vagrant
