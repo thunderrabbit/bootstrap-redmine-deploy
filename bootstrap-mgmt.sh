@@ -41,5 +41,8 @@ cat >> /home/vagrant/.gitconfig <<EOL
        	email = bootstrap.redmine@example.com
 EOL
 
+## set up .gitignore
+curl https://www.gitignore.io/api/emacs%2Cansible > /home/vagrant/.gitignore
+
 # make sure user vagrant can edit things in his own home directory
 chown -R vagrant:vagrant /home/vagrant
