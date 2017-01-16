@@ -33,5 +33,13 @@ ansible-galaxy install geerlingguy.mysql
 # create an RSA key in case we need it later
 su vagrant -c "ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''"
 
+cat >> /home/vagrant/.gitconfig <<EOL
+[core]
+       	excludesfile = /home/vagrant/.gitignore
+[user]
+       	name = bootstrap Redmine in VirtualBox
+       	email = bootstrap.redmine@example.com
+EOL
+
 # make sure user vagrant can edit things in his own home directory
 chown -R vagrant:vagrant /home/vagrant
