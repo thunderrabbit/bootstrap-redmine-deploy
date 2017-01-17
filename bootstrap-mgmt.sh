@@ -48,13 +48,28 @@ curl https://www.gitignore.io/api/emacs%2Cansible > /home/vagrant/.gitignore
 cat >> /home/vagrant/setup.sh <<EOL
 #!/bin/bash
 
-echo "Getting playbooks to set up Redmine on AWS"
+echo "Getting playbooks which will set up Redmine on AWS"
 git clone https://github.com/thunderrabbit/deploy-redmine-on-aws.git
 
 cd ~/deploy-redmine-on-aws
 . ./setup.sh
 EOL
 chmod 755 setup.sh
+
+cat >> /home/vagrant/.profile <<EOL
+if [ -f ~/ansible/aws_keys ]; then
+    ## load aws_keys into environment variables each time we log in
+    source ~/ansible/aws_keys
+    echo
+    echo "AWS Keys have been loaded; run rc to test connection."
+else
+    echo "I don't see keys at ~/ansible/aws_keys so I won't be able to connect to AWS"
+    echo "That makes sense if this is the first time to log in to this machine."
+    echo
+    echo "Please run '. ./setup.sh'"
+fi
+EOL
+
 
 # make sure user vagrant can edit things in his own home directory
 chown -R vagrant:vagrant /home/vagrant
