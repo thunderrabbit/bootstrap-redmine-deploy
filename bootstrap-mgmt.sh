@@ -56,5 +56,13 @@ cd ~/deploy-redmine-on-aws
 EOL
 chmod 755 setup.sh
 
+cat >> /home/vagrant/.profile <<EOL
+if [ -f ~/ansible/aws_keys ]; then
+    ## load aws_keys into environment variables each time we log in
+    source ~/ansible/aws_keys
+fi
+EOL
+
+
 # make sure user vagrant can edit things in his own home directory
 chown -R vagrant:vagrant /home/vagrant
