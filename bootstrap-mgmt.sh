@@ -60,6 +60,8 @@ cat >> /home/vagrant/.profile <<EOL
 if [ -f ~/ansible/aws_keys ]; then
     ## load aws_keys into environment variables each time we log in
     source ~/ansible/aws_keys
+    echo
+    echo "AWS Keys have been loaded; run rc to test connection."
 else
     echo "I don't see keys at ~/ansible/aws_keys so I won't be able to connect to AWS"
     echo "That makes sense if this is the first time to log in to this machine."
