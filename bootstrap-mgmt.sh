@@ -57,6 +57,9 @@ EOL
 chmod 755 setup.sh
 
 cat >> /home/vagrant/.profile <<EOL
+# Used when we create the security group, to lock the SSH port down to only this address
+export LOCAL_IP_ADDRESS=\`curl https://ip.robnugen.com/\`
+
 if [ -f ~/ansible/aws_keys ]; then
     ## load aws_keys into environment variables each time we log in
     source ~/ansible/aws_keys
