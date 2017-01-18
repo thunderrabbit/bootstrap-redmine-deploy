@@ -51,6 +51,16 @@ The user associated with the AWS keys should have (at least) the following polic
 You can read more about Access Keys at
 http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html
 
+## Install VPC and base machine on AWS from vagrant box
+
+Once the machine is set up, you can run playbooks.
+
+    cd ~/deploy-redmine-on-aws
+
+Create a VPC, subnet, internet gateway, route table, and spins up a server on public subnet:
+
+    ansible-playbook playbook_005_setup_VPC_and_base_server.yml
+
 ## Rotating keys
 
 New credentials can be created on AWS
