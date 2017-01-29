@@ -126,6 +126,9 @@ Okay `passenger-config validate-install` is happy.
 
     passenger-config validate-install
 
+But `passenger-status` still says it's not serving any applications.
+
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
