@@ -44,7 +44,7 @@ If connection succeeds, you should see at least a couple curly braces and at lea
 	  }
 	}
 
-An error like `ERROR: "Forbidden", while: getting RDS instances` means the IAM User on AWS needs more access to AWS.
+An error like `ERROR: "Forbidden", while: getting RDS instances` means the IAM User on AWS needs more access to AWS (See "AWS Keys" section below).
 
 ## Install VPC and base machine on AWS from vagrant box
 
