@@ -22,11 +22,15 @@ The first time you log on, run setup:
 
     . ./setup.sh
 
-Setup will clone a repo and run *its* setup.sh.  This will require entering AWS keys.
+Setup will clone a repo and run *its* setup.sh.  This will require entering AWS keys (see below).
 
 ## Test connectivity to AWS
 
-Once you've entered AWS keys, test connectivity:
+Once you've entered AWS keys, load them into memory:
+
+    source ~/ansible/aws_keys
+
+Then test connectivity:
 
     rc
 
@@ -40,16 +44,7 @@ If connection succeeds, you should see at least a couple curly braces and at lea
 	  }
 	}
 
-An error like `ERROR: "Forbidden", while: getting RDS instances` means the IAM User on AWS needs more access to AWS.
-
-The user associated with the AWS keys should have (at least) the following policies:
-
-* AmazonEC2FullAccess
-* AmazonRDSReadOnlyAccess
-* AmazonElastiCacheReadOnlyAccess
-
-You can read more about Access Keys at
-http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html
+An error like `ERROR: "Forbidden", while: getting RDS instances` means the IAM User on AWS needs more access to AWS (See "AWS Keys" section below).
 
 ## Install VPC and base machine on AWS from vagrant box
 
@@ -60,6 +55,49 @@ Once the machine is set up, you can run playbooks.
 Create a VPC, subnet, internet gateway, route table, and spins up a server on public subnet:
 
     ansible-playbook playbook_005_setup_VPC_and_base_server.yml
+
+Once the above playbook has been run, refresh the dynamic inventory:
+
+    rc
+
+The next playbook runs some basic security on the box
+
+    ansible-playbook playbook_010_secure_base.yml
+
+The next playbook runs `apt upgrade` and reboots the box
+
+    ansible-playbook playbook_015_upgrade_server.yml
+
+Then we install git and apache2 on the box
+
+    ansible-playbook playbook_020_git_apache_on_base.yml
+
+At this point, you should be able to visit the ip address of your machine in a web browser, and see the Apache default page.  Depending on your IP address, which is visible in the Ansible output, e.g.
+
+    http://52.153.120.19
+
+Then install a default site, which could be useful for a load balancer to check the server:
+
+    ansible-playbook playbook_025_install_default_site.yml
+
+Reload your ip-address URL from above and see "ok" as the website.
+
+Now we get to the good stuff, which unfortunately, doesn't yet work:
+
+    ansible-playbook playbook_030_install_redmine.yml
+
+As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.thunderrabbit.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+
+## AWS Keys
+
+The user associated with the AWS keys should have (at least) the following policies:
+
+* AmazonEC2FullAccess
+* AmazonRDSReadOnlyAccess
+* AmazonElastiCacheReadOnlyAccess
+
+You can read more about Access Keys at
+http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html
 
 ## Rotating keys
 
