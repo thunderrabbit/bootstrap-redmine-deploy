@@ -68,6 +68,9 @@ The next playbook runs `apt upgrade` and reboots the box
 
     ansible-playbook playbook_015_upgrade_server.yml
 
+Then we install git and apache2 on the box
+
+    ansible-playbook playbook_020_git_apache_on_base.yml
 
 ## AWS Keys
 
