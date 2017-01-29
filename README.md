@@ -72,6 +72,16 @@ Then we install git and apache2 on the box
 
     ansible-playbook playbook_020_git_apache_on_base.yml
 
+At this point, you should be able to visit the ip address of your machine in a web browser, and see the Apache default page.  Depending on your IP address, which is visible in the Ansible output, e.g.
+
+    http://52.153.120.19
+
+Then install a default site, which could be useful for a load balancer to check the server:
+
+    ansible-playbook playbook_025_install_default_site.yml
+
+Reload your ip-address URL from above and see "ok" as the website.
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
