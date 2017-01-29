@@ -64,6 +64,10 @@ The next playbook runs some basic security on the box
 
     ansible-playbook playbook_010_secure_base.yml
 
+The next playbook runs `apt upgrade` and reboots the box
+
+    ansible-playbook playbook_015_upgrade_server.yml
+
 
 ## AWS Keys
 
