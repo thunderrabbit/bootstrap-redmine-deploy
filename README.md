@@ -118,6 +118,14 @@ Aha!  Passenger seems okay, but Apache needs more software.  "Please install it 
 
 D'oh.  It says `E: Unable to locate package apache2-threaded-dev`
 
+Hmm. this might solve it https://github.com/phusion/passenger/issues/1884
+
+    sudo apt install apache2-dev
+
+Okay `passenger-config validate-install` is happy.
+
+    passenger-config validate-install
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
