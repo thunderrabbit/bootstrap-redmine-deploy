@@ -158,7 +158,7 @@ And now restarting apache2:
 
     sudo service apache2 restart
 
-But `passenger-status` still says it's not running any applications.
+And reloaded redmine.example.com in browser, but `passenger-status` still says it's not running any applications.
 
 I'll still leave the change I made to `redmine.conf`
 
