@@ -130,6 +130,16 @@ Okay `passenger-config validate-install` is happy.
 
 But `passenger-status` still says it's not serving any applications.
 
+Okay, just for fun I did `sudo service apache2 restart`
+
+    sudo service apache2 restart
+
+I tried @sugaryourcoffee's idea from http://stackoverflow.com/q/33200648/194309
+
+    sudo touch /usr/share/redmine/tmp/restart.txt
+
+But `passenger-status` still says it's not serving any applications.
+
 
 ## AWS Keys
 
