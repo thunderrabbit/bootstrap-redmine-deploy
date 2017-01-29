@@ -102,6 +102,13 @@ On my local box, I added a line to link my IP address to this URL
 
 But I only see "ok" when I visit http://redmine.example.com
 
+So let's look at `passenger-status`
+
+    passenger-status
+
+Hmm.  "Phusion Passenger is currently not serving any applications."
+
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
