@@ -86,7 +86,21 @@ Now we get to the good stuff, which unfortunately, doesn't yet work:
 
     ansible-playbook playbook_030_install_redmine.yml
 
-As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.thunderrabbit.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.example.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+
+Log in to the new box on AWS via your IP address from above, e.g.
+
+    ssh -i ~/.ssh/id_rsa ubuntu@52.153.120.19
+
+Go to `/etc/apache2/sites-enabled` and see `redmine.conf`
+
+Per the playbooks, it's set to serve from redmine.example.com
+
+On my local box, I added a line to link my IP address to this URL
+
+    52.153.120.19    redmine.example.com
+
+But I only see "ok" when I visit http://redmine.example.com
 
 ## AWS Keys
 
