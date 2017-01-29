@@ -26,7 +26,11 @@ Setup will clone a repo and run *its* setup.sh.  This will require entering AWS 
 
 ## Test connectivity to AWS
 
-Once you've entered AWS keys, test connectivity:
+Once you've entered AWS keys, load them into memory:
+
+    source ~/ansible/aws_keys
+
+Then test connectivity:
 
     rc
 
