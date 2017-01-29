@@ -140,6 +140,27 @@ I tried @sugaryourcoffee's idea from http://stackoverflow.com/q/33200648/194309
 
 But `passenger-status` still says it's not serving any applications.
 
+Hmm.  `/etc/apache2/sites-enabled/redmine.conf` has the following line:
+
+    PassengerPreStart https://localhost
+
+But there's no SSL on this box yet.  Maybe that's the problem, because on the command line of the AWS box, when I try `curl https://localhost` it gives an error:
+
+    curl: (35) gnutls_handshake() failed: An unexpected TLS packet was received.
+
+So, I'm changing the line to
+
+    PassengerPreStart http://localhost
+
+Because `curl http://localhost` returns 'ok'.
+
+And now restarting apache2:
+
+    sudo service apache2 restart
+
+But `passenger-status` still says it's not running any applications.
+
+I'll still leave the change I made to `redmine.conf`
 
 ## AWS Keys
 
