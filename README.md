@@ -56,6 +56,15 @@ Create a VPC, subnet, internet gateway, route table, and spins up a server on pu
 
     ansible-playbook playbook_005_setup_VPC_and_base_server.yml
 
+Once the above playbook has been run, refresh the dynamic inventory:
+
+    rc
+
+The next playbook runs some basic security on the box
+
+    ansible-playbook playbook_010_secure_base.yml
+
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
