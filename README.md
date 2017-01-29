@@ -108,6 +108,15 @@ So let's look at `passenger-status`
 
 Hmm.  "Phusion Passenger is currently not serving any applications."
 
+Okay, how about `passenger-config validate-install`
+
+    passenger-config validate-install
+
+Aha!  Passenger seems okay, but Apache needs more software.  "Please install it with apt-get install apache2-threaded-dev"
+
+    sudo apt-get install apache2-threaded-dev
+
+D'oh.  It says `E: Unable to locate package apache2-threaded-dev`
 
 ## AWS Keys
 
