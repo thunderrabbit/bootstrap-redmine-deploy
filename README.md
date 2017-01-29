@@ -82,6 +82,12 @@ Then install a default site, which could be useful for a load balancer to check 
 
 Reload your ip-address URL from above and see "ok" as the website.
 
+Now we get to the good stuff, which unfortunately, doesn't yet work:
+
+    ansible-playbook playbook_030_install_redmine.yml
+
+As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.thunderrabbit.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+
 ## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
