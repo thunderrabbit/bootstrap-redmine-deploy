@@ -22,7 +22,7 @@ The first time you log on, run setup:
 
     . ./setup.sh
 
-Setup will clone a repo and run *its* setup.sh.  This will require entering AWS keys.
+Setup will clone a repo and run *its* setup.sh.  This will require entering AWS keys (see below).
 
 ## Test connectivity to AWS
 
@@ -41,6 +41,8 @@ If connection succeeds, you should see at least a couple curly braces and at lea
 	}
 
 An error like `ERROR: "Forbidden", while: getting RDS instances` means the IAM User on AWS needs more access to AWS.
+
+## AWS Keys
 
 The user associated with the AWS keys should have (at least) the following policies:
 
