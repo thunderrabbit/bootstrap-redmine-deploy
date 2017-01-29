@@ -88,6 +88,8 @@ Now we get to the good stuff, which unfortunately, doesn't yet work:
 
 As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.example.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
 
+## Trying to fix it:
+
 Log in to the new box on AWS via your IP address from above, e.g.
 
     ssh -i ~/.ssh/id_rsa ubuntu@52.153.120.19
