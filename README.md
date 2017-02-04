@@ -82,7 +82,7 @@ Then install a default site, which could be useful for a load balancer to check 
 
 Reload your ip-address URL from above and see "ok" as the website.
 
-Now we get to the good stuff, which unfortunately, doesn't yet work:
+Now we get to the good stuff:
 
     ansible-playbook playbook_030_install_redmine.yml
 
