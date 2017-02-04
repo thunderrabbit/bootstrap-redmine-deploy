@@ -86,8 +86,9 @@ Now we get to the good stuff:
 
     ansible-playbook playbook_030_install_redmine.yml
 
-As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.example.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+As of this writing, we want to make it connect via SSL, so I'm working on 
 
+    ansible-playbook playbook_035_install_redmine.yml or something
 
 ## AWS Keys
 
