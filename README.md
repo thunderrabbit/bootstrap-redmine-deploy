@@ -102,11 +102,11 @@ Now we can visit default site securely
 
 Now we get to the good stuff:
 
-    ansible-playbook playbook_030_install_redmine.yml
+    ansible-playbook playbook_035_install_redmine.yml
 
 As of this writing, we want to make it connect via SSL, so I'm working on 
 
-    ansible-playbook playbook_035_install_redmine.yml or something
+    ansible-playbook playbook_040_install_redmine.yml or something
 
 ## AWS Keys
 
