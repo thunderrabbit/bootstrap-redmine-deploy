@@ -92,6 +92,14 @@ Load it again using the domain name
 
     http://test.sbstrm.co.jp
 
+Now let's encrypt the site with certbot
+
+    ansible-playbook playbook_030_ssl_default_site.yml
+
+Now we can visit default site securely
+
+    https://test.sbstrm.co.jp
+
 Now we get to the good stuff:
 
     ansible-playbook playbook_030_install_redmine.yml
