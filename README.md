@@ -76,6 +76,12 @@ At this point, you should be able to visit the ip address of your machine in a w
 
     http://52.153.120.19
 
+Okay, *manually* ("for now") set up route53 with an A record pointing your domain to this IP address.  In our case, `test.sbstrm.co.jp`
+
+Put this domain in the file `vars/vars_for_letsencrypt-ansible.yml`
+
+    ansible_fqdn: "test.sbstrm.co.jp"
+
 Then install a default site, which could be useful for a load balancer to check the server:
 
     ansible-playbook playbook_025_install_default_site.yml
