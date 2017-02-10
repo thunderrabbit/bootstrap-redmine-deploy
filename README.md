@@ -106,7 +106,7 @@ Now we get to the good stuff:
 
 As of this writing, we want to make it connect via SSL, so I'm working on 
 
-    ansible-playbook playbook_040_install_redmine.yml or something
+    ansible-playbook playbook_040_ssl_redmine.yml or something
 
 ## AWS Keys
 
