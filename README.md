@@ -76,17 +76,37 @@ At this point, you should be able to visit the ip address of your machine in a w
 
     http://52.153.120.19
 
+Okay, *manually* ("for now") set up route53 with an A record pointing your domain to this IP address.  In our case, `test.sbstrm.co.jp`
+
+Put this domain in the file `vars/vars_for_letsencrypt-ansible.yml`
+
+    ansible_fqdn: "test.sbstrm.co.jp"
+
 Then install a default site, which could be useful for a load balancer to check the server:
 
     ansible-playbook playbook_025_install_default_site.yml
 
 Reload your ip-address URL from above and see "ok" as the website.
 
-Now we get to the good stuff, which unfortunately, doesn't yet work:
+Load it again using the domain name
 
-    ansible-playbook playbook_030_install_redmine.yml
+    http://test.sbstrm.co.jp
 
-As of this writing, if you can get Redmine to run on the server (as a subdomain like redmine.thunderrabbit.com (which can work with an appropriate entry in local `/etc/hosts` file)), you'll be my hero.  See https://www.upwork.com/jobs/_~01b940f0474e3a416c for details.
+Now let's encrypt the site with certbot
+
+    ansible-playbook playbook_030_ssl_default_site.yml
+
+Now we can visit default site securely
+
+    https://test.sbstrm.co.jp
+
+Now we get to the good stuff:
+
+    ansible-playbook playbook_035_install_redmine.yml
+
+As of this writing, we want to make it connect via SSL, so I'm working on 
+
+    ansible-playbook playbook_040_ssl_redmine.yml or something
 
 ## AWS Keys
 
