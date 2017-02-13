@@ -52,11 +52,11 @@ Once the machine is set up, you can run playbooks.
 
     cd ~/deploy-redmine-on-aws
 
-Create a VPC, subnet, internet gateway, route table, and spins up a server on public subnet:
+Create a VPC, subnet, internet gateway, route table, and spins up a server on public subnet:  (note this subnet will only allow SSH from the external IP address of the vagrant box, which is probably the same as your local machine)
 
     ansible-playbook playbook_005_setup_VPC_and_base_server.yml
 
-Once the above playbook has been run, refresh the dynamic inventory:
+Once the above playbook has been run, refresh the dynamic inventory: (this will allow the next playbooks to know what box to target.)
 
     rc
 
@@ -78,7 +78,7 @@ At this point, you should be able to visit the ip address of your machine in a w
 
 Okay, *manually* ("for now") set up route53 with an A record pointing your domain to this IP address.  In our case, `test.sbstrm.co.jp`
 
-Put this domain in the file `vars/vars_for_letsencrypt-ansible.yml`
+On the vagrant box, put this domain in the file `~/deploy-redmine-on-aws/vars/vars_for_default_site.yml`
 
     ansible_fqdn: "test.sbstrm.co.jp"
 
@@ -92,21 +92,44 @@ Load it again using the domain name
 
     http://test.sbstrm.co.jp
 
-Now let's encrypt the site with certbot
-
-    ansible-playbook playbook_030_ssl_default_site.yml
-
-Now we can visit default site securely
+Load it again via https.  Nice!  Let's Encrypt worked.
 
     https://test.sbstrm.co.jp
 
-Now we get to the good stuff:
+Now we get to the good stuff.
+
+Okay, *manually* ("for now") set up route53 with a CNAME record pointing your Redmine domain to the other domain.  In our case, `redtest.sbstrm.co.jp`
+
+On the vagrant box, put the domain in `~/deploy-redmine-on-aws/vars/vars_for_redmine-ansible.yml`
+
+    redmine_domain: "redtest.sbstrm.co.jp"
+
+Now run the final playbook, which will install Redmine and set up Let's Encrypt for the domain.
 
     ansible-playbook playbook_035_install_redmine.yml
 
-As of this writing, we want to make it connect via SSL, so I'm working on 
+Now we can visit the domain for our Redmine site
 
-    ansible-playbook playbook_040_ssl_redmine.yml or something
+    http://redtest.sbstrm.co.jp
+
+And it should refresh to the SSL version
+
+    https://redtest.sbstrm.co.jp
+
+and show the Redmine main page.  Click login in the top right corner.
+
+The username and password can be found in `~/deploy-redmine-on-aws/vars/vars_for_redmine-ansible.yml`.  Look for redmine_admin_login and redmine_admin_passwd  (N.B. the passwords for DB and redmine login are randomized by the initial setup script on the vagrant box)
+
+    redmine_admin_login: admin
+    redmine_admin_passwd: 'OYN0Ei7FI2ynAOY5qGoF57Co7UuvsWKD'
+
+ Make them stand out easily with git diff:
+
+    git diff vars/vars_for_redmine-ansible.yml
+
+## ETC
+
+1. You might want to get ssh keys off the vagrant box (tldr `cp ~/.ssh/id_rsa* /vagrant`)
 
 ## AWS Keys
 
